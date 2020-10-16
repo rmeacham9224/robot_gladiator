@@ -3,26 +3,40 @@
 //   *fight all enemy robots
 //   *defeat each enemy robot
 //"LOSE" - Player robot's health is zero or less
+var fightOrSkip = function() {
+    var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
+    
+
+    //enter conditional recursive function call here
+    if (promptFight === "" || promptFight === null) {
+        window.alert("You need to provide a valid answer! Please try again.");
+        return fightOrSkip();
+    }
+
+    promptFight = promptFight.toLowerCase();
+
+    //if player picks "skip" confirm and then stop the loop
+    if (promptFight === "skip") {
+        var confirmSkip = window.confirm("Are you sure you would like to quit?");
+
+        if(confirmSkip) {
+            window.alert(playerInfo.name + "has decided to skip this fight. Goodbye!");
+            playerInfo.playerInfo = playerInfo.money - 10;
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
 
 var fight = function(enemy) {
     while(enemy.health > 0 && playerInfo.health > 0) {
-    var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
 
-    if (promptFight === "skip" || promptFight === "SKIP") {
-        //confirm the users wants to skip
-        var confirmSkip = window.confirm("Are you sure you'd like to skip?");
-
-        //if yes (true), leave fight
-        if (confirmSkip) {
-            window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
-            //subtract money from the player for skipping
-            playerInfo.money = Math.max(0, playerInfo.money - 10);
-            console.log("playerMoney", playerInfo.money);
+        if(fightOrSkip()) {
             break;
         }
-    }
-        
-        
+    
         //subtract the value of 'playerAttack' from the value of 'enemyHealth' and use that result to update the value in 'enemyHealth' variable
         var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
         
