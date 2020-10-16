@@ -94,9 +94,9 @@ var endGame = function() {
     else {
         window.alert("You've lost your robot in battle.");
     }
-}
 
-    var playAgainConfirm = window.confirm("Would you like to play again?");
+    
+var playAgainConfirm = window.confirm("Would you like to play again?");
 
     if (playAgainConfirm) {
         startGame();
@@ -105,4 +105,7 @@ var endGame = function() {
         window.alert("Thank you for playing robot gladiators! Come back soon!");
     }
 
-fight();
+};
+
+    
+startGame();
