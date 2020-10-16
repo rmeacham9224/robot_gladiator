@@ -25,7 +25,7 @@ var fight = function(enemyName) {
         if (confirmSkip) {
             window.alert(playerName + " has decided to skip this fight. Goodbye!");
             //subtract money from the player for skipping
-            playerMoney = playerMoney - 10;
+            playerMoney = Math.max(0, playerMoney - 10);
             console.log("playerMoney", playerMoney);
             break;
         }
@@ -33,7 +33,7 @@ var fight = function(enemyName) {
         
         
         //subtract the value of 'playerAttack' from the value of 'enemyHealth' and use that result to update the value in 'enemyHealth' variable
-        enemyHealth = enemyHealth - playerAttack;
+        enemyHealth = Math.max(0, enemyHealth - playerAttack);
         console.log(
             playerName + " attacked " + enemyName + ". " + enemyName + " stll has " + enemyHealth + " health remaining."
         );
@@ -50,7 +50,7 @@ var fight = function(enemyName) {
             }
 
         //Subtract the value of 'enemyAttack' from the value of 'playerHealth' and use that result to update the value in the 'playerHealth' variable.
-        playerHealth = playerHealth - enemyAttack;
+        playerHealth = Math.max(0, playerHealth - enemyAttack);
         console.log(
             enemyName + " attacked " + ". " + playerName + " still has " + playerHealth + " health remaining."
         );
@@ -75,7 +75,7 @@ var startGame = function() {
             
             var pickedEnemyName = enemyNames[i];
 
-            enemyHealth = 50;
+            enemyHealth = Math.floor(Math.random() * 21) + 40;
             
             fight(pickedEnemyName);
             
